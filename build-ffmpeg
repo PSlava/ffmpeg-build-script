@@ -980,6 +980,7 @@ download "https://github.com/FFmpeg/FFmpeg/archive/refs/heads/release/$FFMPEG_VE
   --pkg-config-flags="--static" \
   --prefix="${WORKSPACE}" \
   --extra-version="${EXTRA_VERSION}"
+execute sed -i -E 's/CONFIG_NONFREE 1/CONFIG_NONFREE 0/g;s/CONFIG_VERSION3 1/CONFIG_VERSION3 0/g;s/FFMPEG_CONFIGURATION ".*"/FFMPEG_CONFIGURATION ""/g;s/FFMPEG_LICENSE ".*"/FFMPEG_LICENSE ""/g' config.h
 
 execute make -j $MJOBS
 execute make install
